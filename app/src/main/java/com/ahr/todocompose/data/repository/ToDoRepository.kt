@@ -1,14 +1,15 @@
 package com.ahr.todocompose.data.repository
 
-import com.ahr.todocompose.data.entity.ToDoTaskEntity
 import com.ahr.todocompose.data.entity.asDomain
 import com.ahr.todocompose.data.room.ToDoDao
 import com.ahr.todocompose.domain.ToDoTask
 import com.ahr.todocompose.domain.asEntity
+import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
+@ViewModelScoped
 class ToDoRepository @Inject constructor(private val toDoDao: ToDoDao) {
 
     val getAllTasks: Flow<List<ToDoTask>> = toDoDao.getAllTasks().map { it.asDomain() }
