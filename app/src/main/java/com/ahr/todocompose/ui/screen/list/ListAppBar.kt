@@ -29,7 +29,6 @@ import com.ahr.todocompose.ui.theme.Typography
 import com.ahr.todocompose.ui.theme.appBarContentColor
 import com.ahr.todocompose.ui.viewmodel.SharedViewModel
 import com.ahr.todocompose.util.SearchAppBarState
-import com.ahr.todocompose.util.TrailingIconState
 
 @Composable
 fun ListAppBar(
@@ -168,10 +167,6 @@ fun SearchAppBar(
     onSearchClicked: (String) -> Unit
 ) {
 
-    var trailingIconState: TrailingIconState by remember {
-        mutableStateOf(TrailingIconState.READY_TO_CLOSE)
-    }
-
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -209,19 +204,10 @@ fun SearchAppBar(
             },
             trailingIcon = {
                 IconButton(onClick = {
-                    when (trailingIconState) {
-                        TrailingIconState.READY_TO_CLOSE -> {
-                            onTextChanged("")
-                            trailingIconState = TrailingIconState.READY_TO_DELETE
-                        }
-                        TrailingIconState.READY_TO_DELETE -> {
-                            if (text.isNotEmpty()) {
-                                onTextChanged("")
-                            } else {
-                                onCloseClicked()
-                                trailingIconState = TrailingIconState.READY_TO_DELETE
-                            }
-                        }
+                    if (text.isNotEmpty()) {
+                        onTextChanged("")
+                    } else {
+                        onCloseClicked()
                     }
                 }) {
                     Icon(
