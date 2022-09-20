@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Todo Compose</string>
+    <string name="add_task">Add Task</string>
+    <string name="search_action">Search Tasks</string>
+    <string name="filter_action">Filter Tasks</string>
+    <string name="action_search">Search Action</string>
+    <string name="action_filter">Filter Action</string>
+    <string name="action_delete_all">Delete All</string>
+    <string name="search">Search</string>
+    <string name="close_or_clear">Close Or Clear</string>
 </resources>
