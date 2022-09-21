@@ -16,6 +16,8 @@ import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ahr.todocompose.data.entity.Priority
+import com.ahr.todocompose.ui.theme.MEDIUM_PADDING
+import com.ahr.todocompose.ui.theme.PRIORITY_INDICATOR_SIZE
 import com.ahr.todocompose.ui.theme.TodoComposeTheme
 
 @Composable
@@ -23,8 +25,8 @@ fun PriorityItem(priority: Priority) {
     Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(horizontal = 4.dp)) {
         Canvas(
             modifier = Modifier
-                .size(20.dp)
-                .padding(end = 8.dp)
+                .size(PRIORITY_INDICATOR_SIZE)
+                .padding(end = MEDIUM_PADDING)
         ) {
             drawCircle(priority.color)
         }

@@ -8,4 +8,5 @@
     <string name="action_delete_all">Delete All</string>
     <string name="search">Search</string>
     <string name="close_or_clear">Close Or Clear</string>
+    <string name="tasks">Tasks</string>
 </resources>

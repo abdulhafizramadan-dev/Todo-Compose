@@ -20,10 +20,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.ahr.todocompose.R
 import com.ahr.todocompose.data.entity.Priority
 import com.ahr.todocompose.ui.component.PriorityItem
+import com.ahr.todocompose.ui.theme.TOP_APP_BAR_HEIGHT
 import com.ahr.todocompose.ui.theme.TodoComposeTheme
 import com.ahr.todocompose.ui.theme.Typography
 import com.ahr.todocompose.ui.theme.appBarContentColor
@@ -70,7 +70,7 @@ fun DefaultListAppBar(
 ) {
     TopAppBar(
         title = {
-            Text(text = "Tasks")
+            Text(text = stringResource(R.string.tasks))
         },
         actions = {
             ListAppBarActions(
@@ -170,7 +170,7 @@ fun SearchAppBar(
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .height(56.dp),
+            .height(TOP_APP_BAR_HEIGHT),
         color = MaterialTheme.colors.primarySurface,
         elevation = AppBarDefaults.TopAppBarElevation
     ) {
