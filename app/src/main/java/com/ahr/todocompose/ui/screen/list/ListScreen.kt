@@ -38,7 +38,7 @@ fun ListScreen(
             ListFab(newTask = navigateToTaskScreen)
         }
     ) {
-
+        ListContent()
     }
 }
 
