@@ -1,29 +1,30 @@
 package com.ahr.todocompose.ui.screen.list
 
 import android.annotation.SuppressLint
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import com.ahr.todocompose.R
+import com.ahr.todocompose.domain.ToDoTask
 import com.ahr.todocompose.ui.theme.fabBackgroundColor
 import com.ahr.todocompose.ui.viewmodel.SharedViewModel
 import com.ahr.todocompose.util.SearchAppBarState
 
+@ExperimentalMaterialApi
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun ListScreen(
-    navigateToTaskScreen: (Int) -> Unit,
-    sharedViewModel: SharedViewModel
+    sharedViewModel: SharedViewModel,
+    navigateToTaskScreen: (Int) -> Unit
 ) {
 
     val searchAppBarState: SearchAppBarState by sharedViewModel.searchAppBarState
+    val allTasks: List<ToDoTask> by sharedViewModel.allTasks.collectAsState()
     val searchTextState: String by sharedViewModel.searchTextState
 
     Scaffold(
@@ -38,7 +39,10 @@ fun ListScreen(
             ListFab(newTask = navigateToTaskScreen)
         }
     ) {
-        ListContent()
+        ListContent(
+            tasks = allTasks,
+            onNavigateToTaskScreen = navigateToTaskScreen
+        )
     }
 }
 

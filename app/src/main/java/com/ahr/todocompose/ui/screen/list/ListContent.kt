@@ -2,6 +2,8 @@ package com.ahr.todocompose.ui.screen.list
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -15,14 +17,22 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import com.ahr.todocompose.data.entity.Priority
 import com.ahr.todocompose.domain.ToDoTask
-import com.ahr.todocompose.ui.theme.MEDIUM_PADDING
-import com.ahr.todocompose.ui.theme.PRIORITY_INDICATOR_SIZE
-import com.ahr.todocompose.ui.theme.SMALL_PADDING
-import com.ahr.todocompose.ui.theme.TASK_ITEM_ELEVATION
+import com.ahr.todocompose.ui.theme.*
 
+@ExperimentalMaterialApi
 @Composable
-fun ListContent() {
-
+fun ListContent(
+    tasks: List<ToDoTask>,
+    onNavigateToTaskScreen: (taskId: Int) -> Unit
+) {
+    LazyColumn(verticalArrangement = Arrangement.spacedBy(MEDIUM_PADDING)) {
+        items(
+            items = tasks,
+            key = { task -> task.id }
+        ) { task ->
+            TaskItem(toDoTask = task, navigateToTaskScreen = onNavigateToTaskScreen)
+        }
+    }
 }
 
 @ExperimentalMaterialApi
@@ -43,7 +53,7 @@ fun TaskItem(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(MEDIUM_PADDING)
+                .padding(LARGE_PADDING)
         ) {
             Row {
                 Text(
@@ -67,7 +77,9 @@ fun TaskItem(
                 style = MaterialTheme.typography.subtitle1,
                 maxLines = 3,
                 overflow = TextOverflow.Ellipsis,
-                modifier = Modifier.fillMaxWidth().padding(top = SMALL_PADDING)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = SMALL_PADDING)
             )
         }
     }
