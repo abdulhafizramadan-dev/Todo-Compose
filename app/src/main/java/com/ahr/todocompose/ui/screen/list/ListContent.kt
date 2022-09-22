@@ -25,6 +25,22 @@ fun ListContent(
     tasks: List<ToDoTask>,
     onNavigateToTaskScreen: (taskId: Int) -> Unit
 ) {
+    if (tasks.isNotEmpty()) {
+        DisplayTasks(
+            tasks = tasks,
+            onNavigateToTaskScreen = onNavigateToTaskScreen
+        )
+    } else {
+        EmptyListContent()
+    }
+}
+
+@ExperimentalMaterialApi
+@Composable
+fun DisplayTasks(
+    tasks: List<ToDoTask>,
+    onNavigateToTaskScreen: (taskId: Int) -> Unit
+) {
     LazyColumn(verticalArrangement = Arrangement.spacedBy(MEDIUM_PADDING)) {
         items(
             items = tasks,
