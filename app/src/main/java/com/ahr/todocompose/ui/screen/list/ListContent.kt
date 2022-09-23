@@ -16,22 +16,26 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import com.ahr.todocompose.data.entity.Priority
+import com.ahr.todocompose.domain.RequestState
 import com.ahr.todocompose.domain.ToDoTask
 import com.ahr.todocompose.ui.theme.*
 
 @ExperimentalMaterialApi
 @Composable
 fun ListContent(
-    tasks: List<ToDoTask>,
+    tasks: RequestState<List<ToDoTask>>,
     onNavigateToTaskScreen: (taskId: Int) -> Unit
 ) {
-    if (tasks.isNotEmpty()) {
-        DisplayTasks(
-            tasks = tasks,
-            onNavigateToTaskScreen = onNavigateToTaskScreen
-        )
-    } else {
-        EmptyListContent()
+
+    if (tasks is RequestState.Success) {
+        if (tasks.data.isNotEmpty()) {
+            DisplayTasks(
+                tasks = tasks.data,
+                onNavigateToTaskScreen = onNavigateToTaskScreen
+            )
+        } else {
+            EmptyListContent()
+        }
     }
 }
 

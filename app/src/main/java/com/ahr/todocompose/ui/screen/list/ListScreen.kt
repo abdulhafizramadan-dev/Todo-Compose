@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import com.ahr.todocompose.R
+import com.ahr.todocompose.domain.RequestState
 import com.ahr.todocompose.domain.ToDoTask
 import com.ahr.todocompose.ui.theme.fabBackgroundColor
 import com.ahr.todocompose.ui.viewmodel.SharedViewModel
@@ -24,7 +25,7 @@ fun ListScreen(
 ) {
 
     val searchAppBarState: SearchAppBarState by sharedViewModel.searchAppBarState
-    val allTasks: List<ToDoTask> by sharedViewModel.allTasks.collectAsState()
+    val allTasks: RequestState<List<ToDoTask>> by sharedViewModel.allTasks.collectAsState()
     val searchTextState: String by sharedViewModel.searchTextState
 
     Scaffold(
