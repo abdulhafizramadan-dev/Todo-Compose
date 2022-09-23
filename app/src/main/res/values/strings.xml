@@ -10,4 +10,8 @@
     <string name="close_or_clear">Close Or Clear</string>
     <string name="tasks">Tasks</string>
     <string name="no_tasks_found">No Tasks Found!</string>
+    <string name="back">Back</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="update">Update</string>
 </resources>

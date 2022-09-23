@@ -35,7 +35,7 @@ fun ListContent(
             )
         } else {
             EmptyListContent()
-        }
+        } 
     }
 }
 

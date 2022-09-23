@@ -1,5 +1,6 @@
 package com.ahr.todocompose.navigation.destination
 
+import android.util.Log
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
@@ -14,7 +15,8 @@ fun NavGraphBuilder.taskComposable(navigateToListScreen: (Action) -> Unit) {
         arguments = listOf(
             navArgument(name = TASK_ARGUMENT_KEY) { type = NavType.IntType }
         )
-    ) {
-
+    ) { navBackStackEntry ->
+        val id = navBackStackEntry.arguments?.getInt(TASK_ARGUMENT_KEY)
+        Log.d("Task Composable", "taskComposable: ID=$id")
     }
 }
