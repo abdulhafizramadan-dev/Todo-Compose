@@ -14,4 +14,5 @@
     <string name="save">Save</string>
     <string name="delete">Delete</string>
     <string name="update">Update</string>
+    <string name="arrow_drop_down">Arrow Drop Down</string>
 </resources>
