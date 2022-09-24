@@ -106,7 +106,10 @@ fun SearchAction(onSearchClicked: () -> Unit) {
 
 @Composable
 fun SortAction(onSortClicked: (Priority) -> Unit) {
+
     var expanded by remember { mutableStateOf(false) }
+    val listOfPriority = Priority.values()
+
     IconButton(onClick = { expanded = !expanded }) {
         Icon(
             painter = painterResource(id = R.drawable.ic_filter),
@@ -114,23 +117,13 @@ fun SortAction(onSortClicked: (Priority) -> Unit) {
             tint = MaterialTheme.colors.appBarContentColor
         )
         DropdownMenu(expanded = expanded, onDismissRequest = { expanded = !expanded }) {
-            DropdownMenuItem(onClick = {
-                expanded = !expanded
-                onSortClicked(Priority.HIGH)
-            }) {
-                PriorityItem(priority = Priority.HIGH)
-            }
-            DropdownMenuItem(onClick = {
-                expanded = !expanded
-                onSortClicked(Priority.LOW)
-            }) {
-                PriorityItem(priority = Priority.LOW)
-            }
-            DropdownMenuItem(onClick = {
-                expanded = !expanded
-                onSortClicked(Priority.NONE)
-            }) {
-                PriorityItem(priority = Priority.NONE)
+            listOfPriority.forEach { priority ->
+                DropdownMenuItem(onClick = {
+                    expanded = !expanded
+                    onSortClicked(priority)
+                }) {
+                    PriorityItem(priority = priority)
+                }
             }
         }
     }
