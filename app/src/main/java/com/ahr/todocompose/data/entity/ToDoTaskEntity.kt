@@ -19,5 +19,6 @@ fun ToDoTaskEntity.asDomain(): ToDoTask =
         id, title, description, priority
     )
 
-fun List<ToDoTaskEntity>.asDomain(): List<ToDoTask> =
-    map { it.asDomain() }
+fun List<ToDoTaskEntity?>.asDomain(): List<ToDoTask> =
+    this.filterNotNull()
+        .map { it.asDomain() }

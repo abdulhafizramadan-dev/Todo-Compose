@@ -37,7 +37,7 @@ fun ListScreen(
             )
         },
         floatingActionButton = {
-            ListFab(newTask = navigateToTaskScreen)
+            ListFab(navigateToTaskScreen = navigateToTaskScreen)
         }
     ) {
         ListContent(
@@ -48,9 +48,9 @@ fun ListScreen(
 }
 
 @Composable
-fun ListFab(newTask: (Int) -> Unit) {
+fun ListFab(navigateToTaskScreen: (Int) -> Unit) {
     FloatingActionButton(
-        onClick = { newTask(-1) },
+        onClick = { navigateToTaskScreen(-1) },
         backgroundColor = MaterialTheme.colors.fabBackgroundColor
     ) {
         Icon(

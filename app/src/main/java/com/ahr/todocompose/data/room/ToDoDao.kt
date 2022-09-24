@@ -16,7 +16,7 @@ interface ToDoDao {
     fun getAllTasks(): Flow<List<ToDoTaskEntity>>
 
     @Query("SELECT * FROM todo_table WHERE id=:taskId")
-    fun getSelectedTask(taskId: Int): Flow<ToDoTaskEntity>
+    fun getSelectedTask(taskId: Int): Flow<ToDoTaskEntity?>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addTask(taskEntity: ToDoTaskEntity)

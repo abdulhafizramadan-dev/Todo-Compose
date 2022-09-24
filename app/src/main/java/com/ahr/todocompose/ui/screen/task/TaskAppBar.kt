@@ -7,6 +7,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
@@ -20,8 +21,15 @@ import com.ahr.todocompose.ui.theme.appBarContentColor
 import com.ahr.todocompose.util.Action
 
 @Composable
-fun TaskAppBar() {
-
+fun TaskAppBar(task: ToDoTask?, navigateToListScreen: (Action) -> Unit) {
+    if (task == null) {
+        NewTaskAppBar(navigateToListScreen = navigateToListScreen)
+    } else {
+        ExistingTaskAppBar(
+            task = task,
+            navigateToListScreen = navigateToListScreen
+        )
+    }
 }
 
 @Composable
@@ -88,7 +96,7 @@ fun ExistingTaskAppBar(
 fun CloseAction(onCloseClicked: (Action) -> Unit) {
     IconButton(onClick = { onCloseClicked(Action.NO_ACTION) }) {
         Icon(
-            imageVector = Icons.Filled.ArrowBack,
+            imageVector = Icons.Filled.Close,
             contentDescription = stringResource(id = R.string.back),
             tint = MaterialTheme.colors.appBarContentColor
         )

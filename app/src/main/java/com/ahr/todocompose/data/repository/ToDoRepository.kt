@@ -16,8 +16,8 @@ class ToDoRepository @Inject constructor(private val toDoDao: ToDoDao) {
     val sortedByLowPriority: Flow<List<ToDoTask>> = toDoDao.sortByLowPriority().map { it.asDomain() }
     val sortedByHighPriority: Flow<List<ToDoTask>> = toDoDao.sortByHighPriority().map { it.asDomain() }
 
-    fun getSelectedTask(taskId: Int): Flow<ToDoTask> {
-        return toDoDao.getSelectedTask(taskId).map { it.asDomain() }
+    fun getSelectedTask(taskId: Int): Flow<ToDoTask?> {
+        return toDoDao.getSelectedTask(taskId).map { it?.asDomain() }
     }
 
     fun searchTask(searchQuery: String): Flow<List<ToDoTask>> {
