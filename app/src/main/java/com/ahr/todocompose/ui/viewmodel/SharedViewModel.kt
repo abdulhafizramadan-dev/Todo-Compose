@@ -8,6 +8,7 @@ import com.ahr.todocompose.data.entity.Priority
 import com.ahr.todocompose.data.repository.ToDoRepository
 import com.ahr.todocompose.domain.RequestState
 import com.ahr.todocompose.domain.ToDoTask
+import com.ahr.todocompose.util.Constant.MAX_TITLE_LIMIT
 import com.ahr.todocompose.util.SearchAppBarState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -71,4 +72,13 @@ class SharedViewModel @Inject constructor(
         }
     }
 
+    fun updateTitleWithLimit(newTitle: String) {
+        if (newTitle.length < MAX_TITLE_LIMIT) {
+            title.value = newTitle
+        }
+    }
+
+    fun validateFields(): Boolean {
+        return title.value.isNotEmpty() && description.value.isNotEmpty()
+    }
 }

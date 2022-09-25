@@ -17,4 +17,5 @@
     <string name="arrow_drop_down">Arrow Drop Down</string>
     <string name="title">Title</string>
     <string name="description">Description</string>
+    <string name="empty_error_message">Field cannot be empty!</string>
 </resources>
