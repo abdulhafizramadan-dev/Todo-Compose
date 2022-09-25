@@ -37,7 +37,7 @@ fun PriorityDropDown(
             .fillMaxWidth()
             .height(60.dp)
             .clickable { expanded = !expanded }
-            .border(1.dp, MaterialTheme.colors.onSurface.copy(ContentAlpha.disabled)),
+            .border(1.dp, MaterialTheme.colors.onSurface.copy(ContentAlpha.disabled), shape = MaterialTheme.shapes.small),
     verticalAlignment = Alignment.CenterVertically
     ) {
         Canvas(
@@ -50,7 +50,7 @@ fun PriorityDropDown(
         Text(
             modifier = Modifier.weight(8f),
             text = priority.name,
-            style = MaterialTheme.typography.h5
+            style = MaterialTheme.typography.subtitle1
         )
         Icon(
             modifier = Modifier.weight(1.5f),
@@ -60,7 +60,7 @@ fun PriorityDropDown(
         DropdownMenu(
             expanded = expanded,
             onDismissRequest = { expanded = !expanded },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(0.94f)
         ) {
             listOfPriority.forEach { priority ->
                 DropdownMenuItem(onClick = {
@@ -71,7 +71,6 @@ fun PriorityDropDown(
                 }
             }
         }
-
     }
 }
 

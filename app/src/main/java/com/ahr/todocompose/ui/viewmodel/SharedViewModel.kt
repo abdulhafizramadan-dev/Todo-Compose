@@ -4,6 +4,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ahr.todocompose.data.entity.Priority
 import com.ahr.todocompose.data.repository.ToDoRepository
 import com.ahr.todocompose.domain.RequestState
 import com.ahr.todocompose.domain.ToDoTask
@@ -19,6 +20,11 @@ import javax.inject.Inject
 class SharedViewModel @Inject constructor(
     private val toDoRepository: ToDoRepository
 ) : ViewModel() {
+
+    val id: MutableState<Int> = mutableStateOf(0)
+    val title: MutableState<String> = mutableStateOf("")
+    val description: MutableState<String> = mutableStateOf("")
+    val priority: MutableState<Priority> = mutableStateOf(Priority.LOW)
 
     private val _allTasks = MutableStateFlow<RequestState<List<ToDoTask>>>(RequestState.Idle)
     val allTasks get() = _allTasks.asStateFlow()
@@ -48,6 +54,20 @@ class SharedViewModel @Inject constructor(
             toDoRepository.getSelectedTask(taskId).collect { task ->
                 _selectedTask.value = task
             }
+        }
+    }
+
+    fun updateTaskFields(task: ToDoTask?) {
+        if (task != null) {
+            id.value = task.id
+            title.value = task.title
+            description.value = task.description
+            priority.value = task.priority
+        } else {
+            id.value = 0
+            title.value = ""
+            description.value = ""
+            priority.value = Priority.LOW
         }
     }
 

@@ -23,15 +23,14 @@ fun NavGraphBuilder.taskComposable(
         )
     ) { navBackStackEntry ->
 
-        val taskId = navBackStackEntry.arguments?.getInt(TASK_ARGUMENT_KEY)
-        val task by sharedViewModel.selectedTask.collectAsState()
+        val taskId = navBackStackEntry.arguments?.getInt(TASK_ARGUMENT_KEY) ?: -1
+        sharedViewModel.getSelectedTask(taskId)
 
-        if (taskId != null) {
-            sharedViewModel.getSelectedTask(taskId)
-        }
+        val selectedTask by sharedViewModel.selectedTask.collectAsState()
 
         TaskScreen(
-            task = task,
+            task = selectedTask,
+            sharedViewModel = sharedViewModel,
             navigateToListScreen = navigateToListScreen
         )
     }
